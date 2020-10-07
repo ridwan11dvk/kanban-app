@@ -13,9 +13,10 @@ router.post('/googleLogin',CUser.googleLoginHandler)
 router.use(authentication)
 router.get('/tasks',CTask.listHandler)
 router.post('/tasks',CTask.addHandler)
-router.get('/tasks/:id',CTask.listHandler)
+router.get('/tasks/:id',CTask.findHandler)
 router.put('/tasks/:id',authorization,CTask.putHandler)
-router.delete('/tasks/:id'),authorization,CTask.deleteHandler
+router.patch('/tasks/:id',authorization,CTask.patchHandler)
+router.delete('/tasks/:id',authorization,CTask.deleteHandler)
 
 
 module.exports = router

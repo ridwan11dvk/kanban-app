@@ -3,12 +3,36 @@ const {User,Task} = require('../models/index')
 class CTask{
     static async listHandler(req,res,next){
         try{
+            let obj = {backlog: [],todo:[], doing:[], done:[]}
+
             
-          const data  = await Task.findAll({where:{
-                UserId: +req.userData.id
-            }})
-            
-                res.status(200).json(data)
+            const backlog = await Task.findAll({where:{
+                category: 'backlog'
+            }}) 
+
+            const todo = await Task.findAll({where:{
+                category: 'todo'
+            }}) 
+
+            const doing = await Task.findAll({where:{
+                category: 'doing'
+            }}) 
+
+            const done = await Task.findAll({where:{
+                category: 'done'
+            }}) 
+
+            obj.backlog = backlog
+            obj.todo = todo
+            obj.doing = doing
+            obj.done = done
+            console.log(JSON.stringify(obj,null,2))
+            // console.log(JSON.stringify(backlog,null,2))
+            // console.log(JSON.stringify(todo,null,2))
+            // console.log(JSON.stringify(doing,null,2))
+            // console.log(JSON.stringify(done,null,2))
+                //res.status(200).json(backlog)
+                res.status(200).json(obj)
            
         }
         catch(err){
@@ -20,7 +44,6 @@ class CTask{
     static addHandler(req,res,next){
         const input = {
             title: req.body.title,
-            description: req.body.description,
             category: req.body.category,
             UserId: +req.userData.id
         }
@@ -29,6 +52,7 @@ class CTask{
             res.status(201).json(data)
         })
         .catch(err=>{
+            //console.log(JSON.stringify(err,null,2))
             next(err)
         })
     }
@@ -53,7 +77,6 @@ class CTask{
         try{
             const inputBody = {
                 title: req.body.title,
-                description: req.body.description,
                 category: req.body.category,
                 UserId: req.userData.id
             }
@@ -73,7 +96,28 @@ class CTask{
         }
     }
 
-    static async deleteHandler(req,res){
+    static async patchHandler(req,res,next){
+        try{
+            const inputBody = {
+                category: req.body.category
+            }
+            const data = await Task.update(inputBody,{where:{
+                id:+req.params.id
+            }})
+
+            if(!data[0]){
+                next({name: 'Not Found', message: 'Data not found!'})
+            }
+            else{
+                res.status(200).json(await Task.findByPk(+req.params.id))
+            }
+        }   
+        catch(err){
+            next(err)
+        }
+    }
+
+    static async deleteHandler(req,res,next){
         try{
             const data = await Task.destroy({where:{id:+req.params.id}})
 
