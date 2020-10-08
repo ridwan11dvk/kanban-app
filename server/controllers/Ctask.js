@@ -26,13 +26,7 @@ class CTask{
             obj.todo = todo
             obj.doing = doing
             obj.done = done
-            console.log(JSON.stringify(obj,null,2))
-            // console.log(JSON.stringify(backlog,null,2))
-            // console.log(JSON.stringify(todo,null,2))
-            // console.log(JSON.stringify(doing,null,2))
-            // console.log(JSON.stringify(done,null,2))
-                //res.status(200).json(backlog)
-                res.status(200).json(obj)
+            res.status(200).json(obj)
            
         }
         catch(err){
