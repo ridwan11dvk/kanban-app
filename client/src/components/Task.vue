@@ -1,35 +1,50 @@
 <template>
   <div>
     <div class="container contain">
-    <TaskCard  
-    v-for="(task,i) in tasks" :key="i"
-    :task = 'task'>
-    </TaskCard>
+      <TaskCard
+        v-for="(task, i) in tasks"
+        :key="i"
+        :task="task"
+        @refetchTask="refetchTask"
+        @editMe="editMe"
+      >
+      </TaskCard>
     </div>
   </div>
 </template>
 
 <script>
 import Navbar from "./Navbar";
-import TaskCard from './TaskCard'
+import TaskCard from "./TaskCard";
 export default {
   name: "HomePage",
-  props: ['tasks','categories'],
+  props: ["tasks", "categories"],
   components: {
     Navbar,
-    TaskCard
+    TaskCard,
   },
-  data(){
-      return{
-          isPage:'home'
-      }
+  data() {
+    return {
+      isPage: "home",
+    };
   },
-  methods:{
-      logoutHandler(){
-            localStorage.clear()
-            this.$emit('changePage','login')
-        }
-  }
+  methods: {
+    logoutHandler() {
+      localStorage.clear();
+      this.$emit("changePage", "login");
+    },
+    refetchTask() {
+      this.$emit("refetchTask");
+    },
+    changePage(data){
+      
+      this.$emit("changePage",data)
+    },
+    editMe(data){
+      //console.log('task',data)
+      this.$emit('editMe',data)
+    }
+  },
 };
 </script>
 

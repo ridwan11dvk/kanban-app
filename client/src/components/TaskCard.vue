@@ -1,24 +1,40 @@
 <template>
   <div class="card border-secondary mb-3 w-100" style="max-width: 18rem">
-    <div class="card-header bg-info text-white">{{task[0].category}}</div>
+    <div class="card-header bg-info text-white">{{ task[0].category }}</div>
     <div class="card-body overflow-auto" style="max-height: 18rem">
-      <TaskTitle  
-      v-for="task in task" :key="task.id"
-      :task = 'task'>
+      <TaskTitle
+        v-for="task in task"
+        :key="task.id"
+        :task="task"
+        @refetchTask="refetchTask"
+        @editMe="editMe"
+      >
       </TaskTitle>
     </div>
   </div>
 </template>
 
 <script>
-import TaskTitle from './TaskTitle'
+import TaskTitle from "./TaskTitle";
 export default {
   name: "TaskCard",
-  props:['task','categories'],
-  components:{
-      TaskTitle
+  props: ["task", "categories"],
+  components: {
+    TaskTitle,
   },
-  methods: {},
+  methods: {
+    refetchTask() {
+      this.$emit("refetchTask");
+    },
+    changePage(data){
+      //console.log('taskcard',data)
+      this.$emit('changePage',data)
+    },
+    editMe(data){
+      // console.log('taskcard',data)
+      this.$emit('editMe',data)
+    }
+  },
 };
 </script>
 
