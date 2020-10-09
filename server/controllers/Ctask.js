@@ -4,7 +4,6 @@ class CTask{
     static async listHandler(req,res,next){
         try{
             let obj = {backlog: [],todo:[], doing:[], done:[]}
-
             
             const backlog = await Task.findAll({where:{
                 category: 'backlog'

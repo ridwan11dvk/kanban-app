@@ -1,5 +1,6 @@
 const {User,Task} = require('../models/index')
 const Helper = require ('../helper/helper')
+const { OAuth2Client } = require('google-auth-library');
 
 class CUser{
     static async registerHandler(req, res, next) {
@@ -67,12 +68,15 @@ class CUser{
 
     static googleLoginHandler(req, res, next) {
         const client = new OAuth2Client(process.env.CLIENT_ID)
+        //console.log(client)
         let email = ''
+        //console.log(req.body,'xxxxxx')
         client.verifyIdToken({
-            idToken: req.headers.google_access_token,
+            idToken: req.body.google_access_token,
             audience: process.env.CLIENT_ID
         })
         .then(ticket => {
+            console.log('masuk gk ya',ticket)
     
             let payload = ticket.getPayload()
             email = payload['email']
