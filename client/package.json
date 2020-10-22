@@ -2,23 +2,25 @@
   "name": "client",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "author": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "main": "main.js",
   "dependencies": {
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "google-auth-library": "^6.1.1",
     "vue": "^2.6.12",
     "vue-google-login": "^2.0.5",
-    "vue-hot-reload-api": "^2.3.4"
+    "vue-hot-reload-api": "^2.3.4",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
+    "@vue/cli-plugin-vuex": "^4.5.8",
     "@vue/component-compiler-utils": "^3.2.0",
     "vue-template-compiler": "^2.6.12"
-  }
+  },
+  "keywords": [],
+  "license": "ISC"
 }

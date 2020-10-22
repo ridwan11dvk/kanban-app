@@ -63,6 +63,9 @@ export default {
       this.title = ''
     }
   },
+  created () {
+    this.$store.dispatch('fetchData')
+  }
 };
 </script>
 

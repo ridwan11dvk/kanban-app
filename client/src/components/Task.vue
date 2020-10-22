@@ -2,11 +2,12 @@
   <div>
     <div class="container contain">
       <TaskCard
-        v-for="(task, i) in tasks"
-        :key="i"
+        v-for="(category, index) in categories" :key="index"
         :task="task"
+        :category = category
         @refetchTask="refetchTask"
         @editMe="editMe"
+        @changePage="changePage"
       >
       </TaskCard>
     </div>
@@ -45,6 +46,7 @@ export default {
       this.$emit('editMe',data)
     }
   },
+  
 };
 </script>
 

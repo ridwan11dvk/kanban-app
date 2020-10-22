@@ -42,7 +42,7 @@ export default {
       },
       editHandler(){
           axios
-            .put(`http://localhost:3000/tasks/${this.tampEdit.id}`,{
+            .put(`https://kanban-app-projects.herokuapp.com/tasks/${this.tampEdit.id}`,{
                 title: this.title,
                 category: this.category
             },
