@@ -4,7 +4,7 @@ const CTask = require('../controllers/Ctask')
 const { authentication,authorization } = require('../middlewares/middleware')
 
 router.get('/',(req,res)=>{
-    res.send(`Welcome to Kanban App`)
+    res.send(`Welcome to Kanban App v1.1`)
 })
 
 router.post('/register',CUser.registerHandler)
