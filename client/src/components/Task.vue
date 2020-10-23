@@ -1,10 +1,12 @@
 <template>
   <div>
+
     <div class="container contain">
       <TaskCard
-        v-for="(task, i) in tasks"
+        v-for="(category, i) in categories"
         :key="i"
-        :task="task"
+        :tasks="tasks"
+        :category="category"
         @refetchTask="refetchTask"
         @editMe="editMe"
       >

@@ -7,19 +7,19 @@ class CTask{
             
             const backlog = await Task.findAll({where:{
                 category: 'backlog'
-            }}) 
+            }, order: [["createdAt", "ASC"]]}) 
 
             const todo = await Task.findAll({where:{
                 category: 'todo'
-            }}) 
+            }, order: [["createdAt", "ASC"]]}) 
 
             const doing = await Task.findAll({where:{
                 category: 'doing'
-            }}) 
+            }, order: [["createdAt", "ASC"]]}) 
 
             const done = await Task.findAll({where:{
                 category: 'done'
-            }}) 
+            }, order: [["createdAt", "ASC"]]}) 
 
             obj.backlog = backlog
             obj.todo = todo
@@ -70,11 +70,10 @@ class CTask{
         try{
             const inputBody = {
                 title: req.body.title,
-                category: req.body.category,
-                UserId: req.userData.id
+                category: req.body.category
             }
             const data = await Task.update(inputBody,{where:{
-                id:+req.params.id
+                id:+req.params.id, UserId: +req.userData.id
             }})
 
             if(!data[0]){
@@ -95,7 +94,7 @@ class CTask{
                 category: req.body.category
             }
             const data = await Task.update(inputBody,{where:{
-                id:+req.params.id
+                id:+req.params.id, UserId: +req.userData.id
             }})
 
             if(!data[0]){
@@ -112,7 +111,7 @@ class CTask{
 
     static async deleteHandler(req,res,next){
         try{
-            const data = await Task.destroy({where:{id:+req.params.id}})
+            const data = await Task.destroy({where:{id:+req.params.id, UserId: +req.userData.id}})
 
             if(data){
                 res.status(200).json({message: "Task success to delete"})
