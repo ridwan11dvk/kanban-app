@@ -47,7 +47,7 @@ export default {
       }
       axios
         .put(
-          `http://localhost:3000/tasks/${obj.id}`,
+          `https://kanban-app-projects.herokuapp.com/tasks/${obj.id}`,
           {
             title: obj.title,
             category: obj.category,

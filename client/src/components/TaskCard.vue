@@ -66,11 +66,9 @@ export default {
       this.$emit("refetchTask");
     },
     changePage(data){
-      //console.log('taskcard',data)
       this.$emit('changePage',data)
     },
     editMe(data){
-      // console.log('taskcard',data)
       this.$emit('editMe',data)
     }
   },

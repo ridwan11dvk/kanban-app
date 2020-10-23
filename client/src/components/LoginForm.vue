@@ -102,7 +102,7 @@ export default {
   methods: {
     loginHandler() {
       axios
-        .post("http://localhost:3000/login", {
+        .post("https://kanban-app-projects.herokuapp.com/login", {
           email: this.email,
           password: this.password,
         })
@@ -125,7 +125,7 @@ export default {
       var google_access_token = googleUser.getAuthResponse().id_token;
       console.log(google_access_token);
       axios
-        .post("http://localhost:3000/googleLogin", {
+        .post("https://kanban-app-projects.herokuapp.com/googleLogin", {
             google_access_token,
         })
         .then(({data}) => {

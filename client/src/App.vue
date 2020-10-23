@@ -67,7 +67,7 @@ export default {
     },
     fetchCard() {
       axios
-        .get("http://localhost:3000/tasks", {
+        .get("https://kanban-app-projects.herokuapp.com/tasks", {
           headers: {
             access_token: localStorage.getItem("access_token"),
           },

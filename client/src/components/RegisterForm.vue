@@ -32,7 +32,7 @@ export default {
         },
         registerHandler(){
             axios
-                .post('http://localhost:3000/register',{
+                .post('https://kanban-app-projects.herokuapp.com/register',{
                     email: this.email,
                     password: this.password
                 })

@@ -38,7 +38,7 @@ export default {
   methods: {
     addTaskHandler() {
       axios
-        .post("http://localhost:3000/tasks", {
+        .post("https://kanban-app-projects.herokuapp.com/tasks", {
           title: this.title,
           category: this.category
         },

@@ -43,7 +43,6 @@ export default {
       this.$emit("changePage",data)
     },
     editMe(data){
-      //console.log('task',data)
       this.$emit('editMe',data)
     }
   },
